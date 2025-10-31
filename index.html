@@ -1,0 +1,333 @@
+import React, { useRef } from 'react';
+import { Mail, Linkedin, Github, Award, Briefcase, GraduationCap, Code, ExternalLink, Phone, MapPin } from 'lucide-react';
+
+export default function Portfolio() {
+  const aboutRef = useRef(null);
+  const experienceRef = useRef(null);
+  const projectsRef = useRef(null);
+  const skillsRef = useRef(null);
+  const educationRef = useRef(null);
+
+  const scrollToSection = (ref) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const projects = [
+    {
+      title: "Real-Time Edge AI System for Automated Drill Breakage Prevention",
+      company: "Bosch, Nashik Plant",
+      description: "Engineered an end-to-end Edge AI solution utilizing YOLO framework for high-speed, real-time object detection of drill breakage.",
+      highlights: [
+        "Automated fault detection with direct PLC integration",
+        "Reduced manual inspection time significantly",
+        "Integrated Computer Vision with Siemens PLC",
+        "Prevented catastrophic failure and material waste"
+      ],
+      tech: ["YOLO", "Computer Vision", "Siemens PLC", "Edge AI"]
+    },
+    {
+      title: "Cognex-Integrated Custom ML System for Anomaly Detection",
+      company: "Bosch, Nashik Plant",
+      link: "https://github.com/SoumyaDhuriya24/Classification-Model",
+      description: "Engineered a critical QA system using Custom ML model integrated with Cognex Vision Platform for component type anomaly detection.",
+      highlights: [
+        "Proprietary anomaly detection logic",
+        "Automated defect ejection system",
+        "Direct conveyor belt control interface",
+        "Reduced rework costs and downstream failures"
+      ],
+      tech: ["Custom ML", "Cognex Vision", "Quality Assurance", "Industrial AI"]
+    },
+    {
+      title: "Movie Recommendation System",
+      link: "https://github.com/SoumyaDhuriya24/Recommendation-System",
+      description: "Developed a comprehensive recommendation system using Machine Learning, NLP, and Python.",
+      highlights: [
+        "Content-based and collaborative filtering",
+        "Data visualization with Pandas and Matplotlib",
+        "K-means, Decision Tree, and Random Forest algorithms"
+      ],
+      tech: ["Python", "NLP", "Scikit-learn", "Pandas", "ML Algorithms"]
+    },
+    {
+      title: "AI Agent for Smarter Farmer Advice",
+      link: "https://github.com/SoumyaDhuriya24/Farming-Chatbot",
+      description: "Developed and deployed a scalable cloud-based agriculture solution on IBM Cloud Lite.",
+      highlights: [
+        "AI/ML models for soil health and crop yield prediction",
+        "Watsonx-powered conversational AI agents",
+        "Real-time data access and irrigation optimization"
+      ],
+      tech: ["IBM Watsonx AI", "LangChain", "Mistral LLM", "IBM Cloud"]
+    }
+  ];
+
+  const skills = {
+    "Programming": ["C/C++", "Python", "Java", "HTML", "CSS", "JavaScript"],
+    "AI/ML": ["TensorFlow", "Keras", "PyTorch", "Scikit-learn", "OpenCV", "YOLO"],
+    "Data Science": ["Pandas", "NumPy", "Matplotlib", "Seaborn"],
+    "Tools": ["Jupyter", "VS Code", "Git/GitHub", "IBM Cloud", "IBM Watsonx"],
+    "Industrial": ["Cognex Vision", "Siemens PLC"],
+    "Databases": ["MongoDB", "Oracle"]
+  };
+
+  const certifications = [
+    { name: "C/C++ Certification", provider: "Professional Certification" },
+    { name: "Microsoft Machine Learning", provider: "Microsoft" },
+    { name: "Professional Machine Learning", provider: "Google" }
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-50">
+      {/* Header/Hero Section */}
+      <header className="bg-gradient-to-r from-slate-800 to-slate-900 text-white">
+        <div className="container mx-auto px-6 py-16">
+          <div className="max-w-5xl mx-auto">
+            <h1 className="text-5xl font-bold mb-4">Soumya Dhuriya</h1>
+            <p className="text-2xl text-blue-300 mb-4 font-medium">AI/ML Engineer</p>
+            <p className="text-lg text-slate-300 mb-6 max-w-3xl">
+              Specializing in Industrial AI, Computer Vision & Edge Computing with proven expertise in deploying production-scale AI systems at Bosch Ltd.
+            </p>
+            
+            <div className="flex flex-wrap gap-6 text-sm">
+              <a href="tel:8275423568" className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                <Phone size={18} />
+                <span>8275423568</span>
+              </a>
+              <a href="mailto:soumyad.b02@gmail.com" className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                <Mail size={18} />
+                <span>soumyad.b02@gmail.com</span>
+              </a>
+              <a href="https://www.linkedin.com/in/soumya-dhuriya-51bb73294" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                <Linkedin size={18} />
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/SoumyaDhuriya24" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                <Github size={18} />
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Navigation */}
+      <nav className="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-center gap-1 py-4">
+            <button
+              onClick={() => scrollToSection(aboutRef)}
+              className="px-6 py-2 font-medium transition-all rounded text-slate-700 hover:bg-slate-100"
+            >
+              About
+            </button>
+            <button
+              onClick={() => scrollToSection(experienceRef)}
+              className="px-6 py-2 font-medium transition-all rounded text-slate-700 hover:bg-slate-100"
+            >
+              Experience
+            </button>
+            <button
+              onClick={() => scrollToSection(projectsRef)}
+              className="px-6 py-2 font-medium transition-all rounded text-slate-700 hover:bg-slate-100"
+            >
+              Projects
+            </button>
+            <button
+              onClick={() => scrollToSection(skillsRef)}
+              className="px-6 py-2 font-medium transition-all rounded text-slate-700 hover:bg-slate-100"
+            >
+              Skills
+            </button>
+            <button
+              onClick={() => scrollToSection(educationRef)}
+              className="px-6 py-2 font-medium transition-all rounded text-slate-700 hover:bg-slate-100"
+            >
+              Education
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Content Sections */}
+      <main className="container mx-auto px-6 py-12">
+        <div className="max-w-5xl mx-auto space-y-16">
+          
+          {/* About Section */}
+          <section ref={aboutRef} className="scroll-mt-24">
+            <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-8">
+              <h2 className="text-3xl font-bold text-slate-900 mb-6 pb-3 border-b-2 border-blue-600">
+                Professional Summary
+              </h2>
+              <div className="prose prose-slate max-w-none">
+                <p className="text-slate-700 text-lg leading-relaxed mb-4">
+                  Results-driven AI/ML Engineer with hands-on experience developing and deploying production-scale artificial intelligence solutions in industrial environments. Currently serving as a Data Analyst Intern at Bosch Ltd., where I specialize in computer vision, edge AI systems, and industrial automation integration.
+                </p>
+                <p className="text-slate-700 text-lg leading-relaxed mb-4">
+                  My core expertise encompasses designing real-time AI systems that seamlessly integrate with industrial hardware including Cognex vision systems and Siemens PLCs. I have successfully delivered projects that significantly enhance manufacturing quality control, reduce operational costs, and prevent critical production failures.
+                </p>
+                <p className="text-slate-700 text-lg leading-relaxed">
+                  Proficient in leveraging advanced frameworks such as TensorFlow, PyTorch, and YOLO for developing robust machine learning models. Committed to driving innovation through the application of cutting-edge AI technologies to solve complex industrial challenges.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Experience Section */}
+          <section ref={experienceRef} className="scroll-mt-24">
+            <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-8">
+              <h2 className="text-3xl font-bold text-slate-900 mb-6 pb-3 border-b-2 border-blue-600">
+                Professional Experience
+              </h2>
+              <div className="space-y-6">
+                <div className="border-l-4 border-blue-600 pl-6">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Data Analyst (Intern)</h3>
+                  <p className="text-blue-600 font-semibold mb-1">Bosch Ltd. (Nashik Plant)</p>
+                  <p className="text-slate-600 mb-4">July 2025 - Present</p>
+                  <ul className="space-y-3 text-slate-700">
+                    <li className="flex gap-3">
+                      <span className="text-blue-600 font-bold">•</span>
+                      <span>Designing and training AI/ML models for spray detection and drill breakage prevention, enabling accurate real-time identification and monitoring in industrial environments</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-blue-600 font-bold">•</span>
+                      <span>Integrating advanced industrial tools such as Cognex vision systems and Banner sensors with AI pipelines to enhance precision and automation</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-blue-600 font-bold">•</span>
+                      <span>Applying computer vision and deep learning techniques to analyze patterns, improving manufacturing quality control and reducing detection errors</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-blue-600 font-bold">•</span>
+                      <span>Leveraging TensorFlow/Keras, PyTorch, and YOLO for model development, while ensuring seamless deployment in production-scale systems</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Projects Section */}
+          <section ref={projectsRef} className="scroll-mt-24">
+            <h2 className="text-3xl font-bold text-slate-900 mb-6 pb-3 border-b-2 border-blue-600">
+              Featured Projects
+            </h2>
+            <div className="space-y-6">
+              {projects.map((project, idx) => (
+                <div key={idx} className="bg-white rounded-lg shadow-sm border border-slate-200 p-8 hover:shadow-md transition-shadow">
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="text-2xl font-bold text-slate-900">{project.title}</h3>
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 transition-colors">
+                        <ExternalLink size={24} />
+                      </a>
+                    )}
+                  </div>
+                  {project.company && (
+                    <p className="text-blue-600 font-semibold mb-3">{project.company}</p>
+                  )}
+                  <p className="text-slate-700 mb-4 text-lg">{project.description}</p>
+                  <div className="mb-5">
+                    <h4 className="text-slate-900 font-semibold mb-3">Key Achievements:</h4>
+                    <ul className="space-y-2 text-slate-700">
+                      {project.highlights.map((highlight, i) => (
+                        <li key={i} className="flex gap-3">
+                          <span className="text-blue-600 font-bold">•</span>
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, i) => (
+                      <span key={i} className="px-4 py-1.5 bg-blue-50 text-blue-700 rounded-md text-sm font-medium border border-blue-200">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Skills Section */}
+          <section ref={skillsRef} className="scroll-mt-24">
+            <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-8">
+              <h2 className="text-3xl font-bold text-slate-900 mb-6 pb-3 border-b-2 border-blue-600">
+                Technical Skills
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6 mb-10">
+                {Object.entries(skills).map(([category, items]) => (
+                  <div key={category} className="bg-slate-50 rounded-lg p-6 border border-slate-200">
+                    <h3 className="text-xl font-bold text-slate-900 mb-4">{category}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {items.map((skill, i) => (
+                        <span key={i} className="px-3 py-1.5 bg-white text-slate-700 rounded border border-slate-300 text-sm font-medium">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-5 flex items-center gap-2">
+                  <Award className="text-blue-600" size={28} />
+                  Professional Certifications
+                </h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {certifications.map((cert, i) => (
+                    <div key={i} className="bg-slate-50 rounded-lg p-5 border border-slate-200">
+                      <p className="text-slate-900 font-semibold mb-1">{cert.name}</p>
+                      <p className="text-blue-600 text-sm">{cert.provider}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Education Section */}
+          <section ref={educationRef} className="scroll-mt-24">
+            <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-8">
+              <h2 className="text-3xl font-bold text-slate-900 mb-6 pb-3 border-b-2 border-blue-600">
+                Education
+              </h2>
+              <div className="space-y-8">
+                <div className="border-l-4 border-blue-600 pl-6">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Bachelor of Technology</h3>
+                  <p className="text-blue-600 font-semibold mb-1">Computer Science & Engineering</p>
+                  <p className="text-slate-700 font-medium">G.H. Raisoni College of Engineering</p>
+                  <p className="text-slate-600">Nagpur, Maharashtra</p>
+                  <p className="text-slate-600 mt-2">Oct 2022 - Present</p>
+                </div>
+                
+                <div className="border-l-4 border-slate-400 pl-6">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Higher Secondary Education (12th)</h3>
+                  <p className="text-blue-600 font-semibold mb-1">CBSE Board • 75.60%</p>
+                  <p className="text-slate-700 font-medium">Shirinbai Netarwala School</p>
+                  <p className="text-slate-600">Tumsar, Bhandara</p>
+                  <p className="text-slate-600 mt-2">April 2021 - May 2022</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-slate-800 text-white py-8 mt-16">
+        <div className="container mx-auto px-6 text-center">
+          <p className="text-slate-300 mb-2">
+            © 2025 Soumya Dhuriya. All rights reserved.
+          </p>
+          <p className="text-slate-400 text-sm">
+            Available for AI/ML Engineering opportunities
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
