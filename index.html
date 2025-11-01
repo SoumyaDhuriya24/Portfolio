@@ -1,535 +1,590 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soumya Dhuriya | ML & Computer Vision Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        // A 5-color professional palette
-                        'brand-primary': '#F7B801', // Warm Gold/Amber Accent
-                        'brand-secondary': '#e0a800', // Darker gold for hover
-                        'gray-light': '#FFFFFF', // Pure White (Primary Text)
-                        'gray-medium': '#A0A0A0', // Soft Gray (Secondary Text)
-                        'gray-dark': '#1E1E1E',   // Charcoal (Cards / Section BG)
-                        'gray-darkest': '#121212', // Near Black (Main BG)
-                    },
-                    keyframes: {
-                        pulseGlow: {
-                            '0%, 100%': { 
-                                opacity: 1,
-                                boxShadow: '0 0 5px #F7B801'
-                            },
-                            '50%': { 
-                                opacity: 0.9,
-                                boxShadow: '0 0 15px #F7B801'
-                            },
-                        }
-                    },
-                    animation: {
-                        pulseGlow: 'pulseGlow 2.5s ease-in-out infinite',
-                    }
-                }
+    <title>Soumya Dhuriya - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Global Styles & Valorant Theme Palette --- */
+        :root {
+            --bg-darkest: #0F0F0F;  /* Valorant Black */
+            --bg-dark: #1C1C1C;    /* Charcoal */
+            --text-white: #FAFAFA;  /* Off-white */
+            --text-grey: #b0b0b0;
+            --accent-red: #FF4655;  /* Valorant Red */
+            --font-heading: 'Bebas Neue', sans-serif;
+            --font-main: 'Roboto', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-darkest);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 5rem; /* Larger for impact */
+            color: var(--text-white);
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            color: var(--text-white);
+            border-bottom: 3px solid var(--accent-red);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 2rem;
+            color: var(--accent-red);
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--text-grey);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-red);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-red);
+            color: var(--bg-darkest);
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--accent-red);
+            border-radius: 0; /* Sharp edges */
+            font-size: 1.1rem;
+            font-family: var(--font-heading);
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--text-white);
+            color: var(--accent-red);
+            border-color: var(--text-white);
+            text-decoration: none;
+        }
+        
+        /* --- Navigation Bar --- */
+        #navbar {
+            position: fixed;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.9); /* Darker */
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--bg-dark);
+        }
+        
+        #navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #navbar .logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-white);
+            letter-spacing: 1px;
+        }
+        
+        #navbar ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        #navbar ul li {
+            margin-left: 1.5rem;
+        }
+        
+        #navbar ul li a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: bold;
+            font-family: var(--font-main);
+            transition: color 0.3s ease;
+        }
+        
+        #navbar ul li a:hover {
+            color: var(--accent-red);
+        }
+
+        /* --- Hero Section (UPDATED) --- */
+        #home {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('bg.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        #home h1 {
+            font-size: 6rem; /* Even larger */
+        }
+
+        #home .hero-text {
+            font-size: 1.5rem;
+            color: var(--text-grey);
+            max-width: 700px;
+            margin-bottom: 2rem;
+            font-family: var(--font-main); /* Body font for tagline */
+        }
+
+        #home .hero-text strong {
+            color: var(--text-white);
+        }
+
+        /* --- About Section --- */
+        #about {
+            /* Added container class to the section tag */
+        }
+
+        #about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+        
+        #about strong {
+            color: var(--text-white);
+        }
+
+        /* --- Experience Section --- */
+        #experience .job {
+            background: var(--bg-dark);
+            padding: 2rem;
+            border-radius: 0; /* Sharp edges */
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent-red);
+        }
+        
+        #experience .job-title {
+            font-size: 1.8rem; /* Header font */
+            font-family: var(--font-heading);
+            color: var(--text-white);
+            margin: 0;
+        }
+        
+        #experience .company {
+            font-size: 1.2rem;
+            color: var(--accent-red);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        #experience ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+        }
+        
+        #experience ul li {
+            color: var(--text-grey);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Projects Section --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--bg-dark);
+            border-radius: 0; /* Sharp edges */
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-red); /* Red border on hover */
+        }
+
+        .project-card-content {
+            padding: 2rem;
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+        }
+
+        .project-card .project-tag {
+            font-size: 0.9rem;
+            color: var(--text-grey);
+            font-style: italic;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .project-card ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .project-card li {
+            font-size: 0.95rem;
+            color: var(--text-grey);
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-card strong {
+            color: var(--text-white);
+        }
+
+        .project-card a {
+            font-weight: bold;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .skill-category {
+            background: var(--bg-dark);
+            padding: 2rem;
+            border-radius: 0; /* Sharp edges */
+            border-bottom: 3px solid var(--bg-dark);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--accent-red);
+        }
+        
+        .skill-category h3 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 0.5rem;
+        }
+        
+        .skill-category p {
+            color: var(--text-grey);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* --- Education Section --- */
+        #education .education-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media (min-width: 768px) {
+            #education .education-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
-    </script>
-    <style>
-        /* Custom scrollbar matching the new palette */
-        ::-webkit-scrollbar {
-            width: 8px;
+
+        .education-card {
+            background: var(--bg-dark);
+            padding: 2rem;
+            border-radius: 0; /* Sharp edges */
+            border-left: 3px solid var(--accent-red);
         }
-        ::-webkit-scrollbar-track {
-            background: #121212; /* gray-darkest */
+        
+        .education-card h3 {
+            margin-top: 0;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #333333; /* A neutral dark gray */
-            border-radius: 4px;
+        
+        .education-card p {
+            margin-bottom: 0.5rem;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4a4a4a; /* A lighter gray on hover */
+
+        .education-card .degree {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-white);
         }
-        /* Active nav link styling to use the new accent color */
-        .nav-link.active {
-            color: #F7B801; /* brand-primary */
-            font-weight: 600;
+        
+        .education-card .date {
+            font-size: 0.9rem;
+            color: var(--text-grey);
+            font-style: italic;
         }
-        /* Gradient text class */
-        .text-gradient {
-            background: linear-gradient(to right, #FFFFFF, #F7B801);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        /* --- Contact Section --- */
+        #contact {
+            text-align: center;
         }
+        
+        #contact .container {
+            max-width: 700px;
+        }
+
+        #contact p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .contact-links a {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-white);
+            transition: color 0.3s ease;
+        }
+        
+        .contact-links a:hover {
+            color: var(--accent-red);
+            text-decoration: none;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: #000;
+            color: var(--text-grey);
+            font-size: 0.9rem;
+        }
+        
+        /* Removed the mobile media query for the old #home layout */
+
     </style>
 </head>
-<body class="bg-gray-darkest text-gray-light font-sans antialiased">
+<body>
 
-    <!-- Header & Navigation -->
-    <header class="bg-gray-darkest/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-dark/50">
-        <nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo/Name -->
-                <div class="flex-shrink-0">
-                    <a href="#home" class="text-xl font-bold text-gray-light">Soumya Dhuriya</a>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#home" class="nav-link text-gray-medium hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="#about" class="nav-link text-gray-medium hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">About</a>
-                        <a href="#experience" class="nav-link text-gray-medium hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Experience</a>
-                        <a href="#projects" class="nav-link text-gray-medium hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-                        <a href="#skills" class="nav-link text-gray-medium hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Skills</a>
-                        <a href="#contact" class="nav-link text-gray-medium hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-                    </div>
-                </div>
+    <nav id="navbar">
+        <div class="container">
+            <a href="#home" class="logo">Soumya Dhuriya</a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-                <!-- Mobile Menu Button -->
-                <div class="-mr-2 flex md:hidden">
-                    <button id="mobile-menu-button" type="button" class="bg-gray-dark inline-flex items-center justify-center p-2 rounded-md text-gray-medium hover:text-brand-primary hover:bg-gray-dark/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-darkest focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <!-- Hamburger Icon -->
-                        <svg id="hamburger-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        <!-- Close Icon -->
-                        <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+    <section id="home">
+        <h1>Soumya Dhuriya</h1>
+        <p class="hero-text">
+            Computer Science Engineer specializing in <strong>Data Analyst</strong>, <strong>Edge Computing</strong>, and <strong>Computer Vision</strong>.
+        </p>
+        <p class="hero-text">
+            Building and deploying real-world AI solutions for automated quality assurance, real-time fault detection, and industrial automation.
+        </p>
+        <div>
+            <a href="#projects" class="btn">View Projects</a>
+            <a href="#contact" class="btn">Contact Me</a>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <p>
+            I am a Computer Science and Engineering student at G.H. Raisoni College of Engineering, driven by the challenge of solving complex, real-world problems.
+        </p>
+        <p>
+            My passion lies at the intersection of artificial intelligence and physical industry. As a Data Analyst Intern at <strong>Bosch Ltd.</strong>, I am gaining deep, hands-on experience engineering end-to-end Edge AI and custom machine learning systems. I've successfully integrated AI models (using TensorFlow, PyTorch, and YOLO) with industrial hardware like <strong>Siemens PLCs</strong> and <strong>Cognex Vision Systems</strong> to automate fault detection and enhance quality assurance in a high-speed production environment.
+        </p>
+        <p>
+            I am actively seeking opportunities to apply my skills in building robust, efficient, and intelligent systems.
+        </loc>
+    </section>
+
+    <section id="experience" class="container">
+        <h2>Professional Experience</h2>
+        <div class="job">
+            <h3 class="job-title">Data Analyst (Intern)</h3>
+            <p class="company">Bosch Ltd. (Nashik Plant) | July 2025 – Present</p>
+            <ul>
+                <li>Designed and trained AI/ML models for industrial spray detection and component anomaly identification.</li>
+                <li>Integrated advanced industrial tools, including Cognex vision systems and Banner sensors, with AI pipelines to enhance automation and precision.</li>
+                <li>Applied advanced computer vision and deep learning techniques to analyze spray patterns, significantly improving manufacturing quality control and reducing detection errors.</li>
+                <li>Leveraged TensorFlow, Keras, PyToh, and YOLO for model development and deployment in production-scale systems.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-card-content">
+                    <h3>Real-Time Edge AI System for Automated Drill Breakage Prevention</h3>
+                    <span class="project-tag">Project at Bosch, Nashik Plant</span>
+                    <p>Engineered an end-to-end Edge AI solution using the YOLO framework for high-speed, real-time object detection of drill breakage. This system automated fault detection, drastically decreasing manual inspection time.</p>
+                    <ul>
+                        <li><strong>Key Feature:</strong> Established direct, low-latency control logic with a <strong>Siemens PLC</strong> to automatically generate a machine halt signal.</li>
+                        <li><strong>Key Feature:</strong> Integrated Computer Vision directly with Industrial Control (PLC) to prevent catastrophic failure and reduce material waste.</li>
+                        <li><strong>Key Feature:</strong> Validated and deployed in a live production environment, ensuring robust and reliable automated shutdown procedures.</li>
+                    </ul>
                 </div>
             </div>
-        </nav>
+            
+            <div class="project-card">
+                <div class="project-card-content">
+                    <h3>Cognex-Integrated Custom ML System for Automated Anomaly Detection</h3>
+                    <span class="project-tag">Project at Bosch, Nashik Plant</span>
+                    <p>Engineered a critical QA system utilizing a Custom ML model integrated with the <strong>Cognex Vision Platform</strong> for component type anomaly detection. Developed proprietary logic to identify and flag incorrect parts on the line.</p>
+                    <ul>
+                        <li><strong>Key Feature:</strong> Established a direct interface to automatically generate a signal to divert the defective part for scrap or removal.</li>
+                        <li><strong>Key Feature:</strong> Deployed a fully automated defect ejection system, significantly improving product integrity and reducing rework costs.</li>
+                        <li><strong>Key Feature:</strong> Optimized the custom ML model for fast inference speed to maintain high-volume throughput.</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- Mobile Menu -->
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="nav-link text-gray-medium hover:text-brand-primary hover:bg-gray-dark/50 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="#about" class="nav-link text-gray-medium hover:text-brand-primary hover:bg-gray-dark/50 block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="#experience" class="nav-link text-gray-medium hover:text-brand-primary hover:bg-gray-dark/50 block px-3 py-2 rounded-md text-base font-medium">Experience</a>
-                <a href="#projects" class="nav-link text-gray-medium hover:text-brand-primary hover:bg-gray-dark/50 block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-                <a href="#skills" class="nav-link text-gray-medium hover:text-brand-primary hover:bg-gray-dark/50 block px-3 py-2 rounded-md text-base font-medium">Skills</a>
-                <a href="#contact" class="nav-link text-gray-medium hover:text-brand-primary hover:bg-gray-dark/50 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            <div class="project-card">
+                <div class="project-card-content">
+                    <h3>AI Agent for Smarter Farmer Advice</h3>
+                    <span class="project-tag">Academic Project</span>
+                    <p>Developed and deployed a scalable cloud-based agriculture solution on IBM Cloud Lite with real-time data access. Implemented AI/ML models using IBM Watsonx AI, LangChain, and Mistral LLM for soil health monitoring and crop yield prediction.</p>
+                    <a href="#">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-content">
+                    <h3>Movie Recommendation System</h3>
+                    <span classs="project-tag">Academic Project</span>
+                    <p>Developed a recommendation system using Machine Learning and NLP in Python. Implemented both content-based and collaborative filtering techniques. Utilized libraries like Pandas, Scikit-learn, and Matplotlib.</p>
+<a href="#">View Project</a>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center text-center -mt-16">
-            <div class="max-w-3xl">
-                <h1 class="text-5xl font-extrabold tracking-tight text-gradient sm:text-7xl">
-                    Soumya Dhuriya
-                </h1>
-                <h2 class="mt-4 text-2xl font-semibold text-brand-primary sm:text-3xl">
-                    Machine Learning & Computer Vision Engineer
-                </h2>
-                <p class="mt-6 text-lg leading-8 text-gray-medium">
-                    Specializing in engineering and deploying end-to-end AI solutions for industrial automation and quality control.
-                </p>
-                <div class="mt-10 flex items-center justify-center gap-x-6">
-                    <a href="#projects" class="rounded-md bg-brand-primary px-4 py-3 text-sm font-semibold text-gray-darkest shadow-sm hover:bg-brand-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary animate-pulseGlow">View My Work</a>
-                    <a href="#contact" class="text-sm font-semibold leading-6 text-gray-light hover:text-brand-primary">Get in Touch <span aria-hidden="true">&rarr;</span></a>
-                </div>
-                <div class="mt-12 flex justify-center space-x-6">
-                    <a href="https://www.linkedin.com/in/soumya-dhuriya-51bb73294" target="_blank" rel="noopener noreferrer" class="text-gray-medium hover:text-brand-primary" title="LinkedIn">
-                        <span class="sr-only">LinkedIn</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                        </svg>
-                    </a>
-                    <a href="https://github.com/SoumyaDhuriya24" target="_blank" rel="noopener noreferrer" class="text-gray-medium hover:text-brand-primary" title="GitHub">
-                        <span class="sr-only">GitHub</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.034c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                        </svg>
-                    </a>
-                    <a href="mailto:soumyad.b02@gmail.com" class="text-gray-medium hover:text-brand-primary" title="Email">
-                        <span class="sr-only">Email</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
-                        </svg>
-                    </a>
-                </div>
+    <section id="skills" class="container">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <p>C/C++, Python, Java, HTML, CSS, JavaScript</p>
             </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-24 sm:py-32 bg-gray-dark rounded-xl">
-            <div class="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-16 items-center">
-                <!-- Image Placeholder -->
-                <div class="md:col-span-1 flex justify-center px-4">
-                    <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gray-darkest ring-4 ring-brand-primary/50 shadow-2xl flex items-center justify-center">
-                        <!-- 
-                            ADD YOUR IMAGE HERE:
-                            1. Upload your image to a host (like Imgur or GitHub).
-                            2. Replace the 'https://placehold.co/...' URL below with your image's direct link.
-                            3. Make sure to use the 'object-cover w-full h-full rounded-full' classes on the <img> tag.
-                        -->
-                        <img 
-                            src="https://github.com/SoumyaDhuriya24.png" 
-                            alt="Soumya Dhuriya" 
-                            class="object-cover w-full h-full rounded-full"
-                            onerror="this.onerror=null;this.src='https://placehold.co/320x320/1E1E1E/A0A0A0?text=Soumya\nDhuriya';"
-                        >
-                    </div>
-                </div>
-                <!-- About Text -->
-                <div class="md:col-span-2 text-center md:text-left">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-light sm:text-4xl">About Me</h2>
-                    <p class="mt-6 text-lg leading-8 text-gray-medium">
-                        Dynamic Computer Science student specializing in Machine Learning and Computer Vision. Hands-on experience at Bosch, engineering and deploying end-to-end AI solutions for industrial automation, integrating deep learning models (YOLO, TensorFlow) with PLCs and Cognex vision systems to enhance quality control and operational efficiency.
-                    </p>
-                </div>
+            <div class="skill-category">
+                <h3>AI/ML & Data Science</h3>
+                <p>TensorFlow, Keras, PyTorch, Scikit-learn, OpenCV, Pandas, NumPy, Matplotlib, Seaborn, Ultralytics (YOLO)</p>
             </div>
-        </section>
+            <div class="skill-category">
+                <h3>Industrial Technology</h3>
+                <p>Cognex Vision Systems, Siemens PLC</p>
+            </div>
+            <div class="skill-category">
+                <h3>Databases & Platforms</h3>
+                <p>MongoDB, Oracle, Jupyter Notebook, VS Code, Google Colab, Git & GitHub, IBM Cloud, IBM Watsonx</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="py-24 sm:py-32">
-            <div class="mx-auto max-w-4xl">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-light sm:text-4xl text-center mb-16">Professional Experience</h2>
+    <section id="education" class="container">
+        <h2>Education & Certifications</h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <h3>Education</h3>
+                <p class="degree">Bachelor of Technology - Computer Science & Engineering</p>
+                <p>G.H. Raisoni College of Engineering, Nagpur</p>
+                <p class="date">Oct 2022 – Present</p>
+                <hr style="border-color: var(--bg-darkest); margin: 1rem 0;">
+                <p class->12th | CBSE</p>
+                <p>"Shirinbai Netarwala School, Tumsar"</p>
+                <p class="date">April 2021-May 2022</p>
+            </div>
+            <div class="education-card">
+                <h3>Certifications</h3>
                 
-                <!-- Bosch Internship -->
-                <div class="bg-gray-dark rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-brand-primary/10 hover:-translate-y-1">
-                    <div class="p-6 sm:p-8">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center">
-                            <h3 class="text-xl font-semibold text-gray-light">Data Analyst (Intern)</h3>
-                            <!-- NOTE: The 'July 2025' date from your resume is in the future and unusual. -->
-                            <!-- You should double-check this date. I have used it as written. -->
-                            <span class="text-sm text-gray-medium mt-1 sm:mt-0">July 2025 - Present</span>
-                        </div>
-                        <div class="text-lg font-medium text-brand-primary mt-1">
-                            Bosch Ltd. (Nashik Plant)
-                        </div>
-                        <p class="mt-4 text-base text-gray-medium font-semibold">Image Classification for Type and Drill Breakage prevention (Spray Detection)</p>
-                        <ul class="mt-4 space-y-3 text-gray-light list-disc list-inside">
-                            <li>Designing and training AI/ML models for spray detection, enabling accurate real-time identification and monitoring in industrial environments.</li>
-                            <li>Integrating advanced industrial tools such as Cognex vision systems and Banner sensors with AI pipelines to enhance precision and automation.</li>
-                            <li>Applying computer vision and deep learning techniques to analyze spray patterns, improving manufacturing quality control and reducing detection errors.</li>
-                            <li>Leveraging TensorFlow/Keras, PyTorch and Yolo for model development, while ensuring seamless deployment in production-scale systems.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-24 sm:py-32 bg-gray-dark rounded-xl">
-            <div class="mx-auto max-w-7xl">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-light sm:text-4xl text-center mb-16">Projects</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                    
-                    <!-- Project 1: Edge AI -->
-                    <div class="flex flex-col bg-gray-darkest rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 ring-1 ring-transparent hover:ring-brand-primary">
-                        <div class="p-6 sm:p-8 flex-grow">
-                            <h3 class="text-xl font-semibold text-gray-light">Real-Time Edge AI System for Automated Drill Breakage Prevention</h3>
-                            <p class="text-sm font-medium text-gray-medium mt-1">Role: Bosch (Nashik Plant) Project</p>
-                            <ul class="mt-4 space-y-2 text-gray-medium list-disc list-inside text-sm">
-                                <li>Engineered an end-to-end Edge AI solution using YOLO for real-time drill breakage detection.</li>
-                                <li>Automated fault detection, significantly decreasing manual inspection time.</li>
-                                <li>Established low-latency control logic with a Siemens PLC to halt the machine on detection.</li>
-                                <li>Integrated Computer Vision with Industrial Control (PLC) to prevent catastrophic failure and reduce waste.</li>
-                            </ul>
-                        </div>
-                        <div class="p-6 bg-gray-darkest/50 border-t border-gray-dark/50">
-                            <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary">YOLO</span>
-                            <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary ml-2">Siemens PLC</span>
-                            <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary ml-2">Edge AI</span>
-                        </div>
-                    </div>
-
-                    <!-- Project 2: Cognex ML -->
-                    <div class="flex flex-col bg-gray-darkest rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 ring-1 ring-transparent hover:ring-brand-primary">
-                        <div class="p-6 sm:p-8 flex-grow">
-                            <h3 class="text-xl font-semibold text-gray-light">Cognex-Integrated Custom ML System for Anomaly Detection</h3>
-                            <p class="text-sm font-medium text-gray-medium mt-1">Role: Bosch (Nashik Plant) Project</p>
-                            <ul class="mt-4 space-y-2 text-gray-medium list-disc list-inside text-sm">
-                                <li>Engineered a critical QA system integrating a Custom ML model with the Cognex Vision Platform.</li>
-                                <li>Developed proprietary anomaly detection logic to identify incorrect parts on the production line.</li>
-                                <li>Established direct control over the conveyor to divert defective parts, ensuring defect isolation.</li>
-                                <li>Optimized the custom ML model for fast inference speed in a high-volume industrial environment.</li>
-                            </ul>
-                        </div>
-                        <div class="p-6 bg-gray-darkest/50 border-t border-gray-dark/50 flex justify-between items-center">
-                            <div>
-                                <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary">Custom ML</span>
-                                <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary ml-2">Cognex</span>
-                                <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary ml-2">QA Automation</span>
-                            </div>
-                            <!-- Add link to project if available -->
-                            <a href="#" class="text-sm font-semibold text-gray-medium hover:text-brand-primary" title="View Project">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0l-1.5-1.5a.5.5 0 01.707-.707l1.5 1.5a1 1 0 001.414 0l3-3z" clip-rule="evenodd" /><path fill-rule="evenodd" d="M4.586 12.586a2 2 0 010-2.828l3-3a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0l-1.5-1.5a.5.5 0 01.707-.707l1.5 1.5a1 1 0 001.414 0l3-3a.5.5 0 01.707.707l-3 3a2 2 0 01-2.828 0z" clip-rule="evenodd" /></svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 3: Movie Recommendation -->
-                    <div class="flex flex-col bg-gray-darkest rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 ring-1 ring-transparent hover:ring-brand-primary">
-                        <div class="p-6 sm:p-8 flex-grow">
-                            <h3 class="text-xl font-semibold text-gray-light">Movie Recommendation System</h3>
-                            <p class="text-sm font-medium text-gray-medium mt-1">Personal Project</p>
-                            <ul class="mt-4 space-y-2 text-gray-medium list-disc list-inside text-sm">
-                                <li>Developed a recommendation system using Machine learning, NLP, and Python.</li>
-                                <li>Implemented content-based and collaborative filtering techniques.</li>
-                                <li>Performed data visualization using Pandas, Scikit-learn, and Matplotlib.</li>
-                                <li>Applied ML algorithms like K-Means, Decision Tree, and Random Forest.</li>
-                            </ul>
-                        </div>
-                        <div class="p-6 bg-gray-darkest/50 border-t border-gray-dark/50 flex justify-between items-center">
-                            <div>
-                                <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary">Scikit-learn</span>
-                                <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary ml-2">NLP</span>
-                                <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary ml-2">Pandas</span>
-                            </div>
-                            <a href="#" class="text-sm font-semibold text-gray-medium hover:text-brand-primary" title="View Project">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z" /><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.022 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" /></svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 4: AI Agent -->
-                    <div class="flex flex-col bg-gray-darkest rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 ring-1 ring-transparent hover:ring-brand-primary">
-                        <div class="p-6 sm:p-8 flex-grow">
-                            <h3 class="text-xl font-semibold text-gray-light">AI Agent for Smarter Farmer Advice</h3>
-                            <p class="text-sm font-medium text-gray-medium mt-1">Personal Project</p>
-                            <ul class="mt-4 space-y-2 text-gray-medium list-disc list-inside text-sm">
-                                <li>Developed and deployed a scalable agriculture solution on IBM Cloud Lite.</li>
-                                <li>Implemented AI/ML models using IBM Watsonx AI, LangChain, and Mistral LLM.</li>
-                                <li>Models provided soil health monitoring, irrigation optimization, and crop yield prediction.</li>
-                                <li>Designed Watsonx-powered AI Agents to provide context-aware, conversational advice.</li>
-                            </ul>
-                        </div>
-                        <div class="p-6 bg-gray-darkest/50 border-t border-gray-dark/50 flex justify-between items-center">
-                            <div>
-                                <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary">IBM Watsonx</span>
-                                <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary ml-2">LangChain</span>
-                                <span class="inline-flex items-center rounded-full bg-gray-dark px-3 py-1 text-xs font-semibold text-brand-primary ml-2">LLM</span>
-                            </div>
-                            <a href="#" class="text-sm font-semibold text-gray-medium hover:text-brand-primary" title="View Project">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z" /><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.022 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" /></svg>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-24 sm:py-32">
-            <div class="mx-auto max-w-7xl">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-light sm:text-4xl text-center mb-16">Technical Skills</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                    
-                    <div class="bg-gray-dark rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold text-brand-primary mb-4 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17.25l.414-.414m5.636 0l-.414.414M9 10.5h6m-3 3.75v.01M12 18C5.373 18 0 12.627 0 6S5.373 0 12 0s12 5.373 12 12-5.373 6-12 6z" /></svg>
-                            AI & Machine Learning
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-pill">TensorFlow</span><span class="skill-pill">PyTorch</span><span class="skill-pill">Keras</span><span class="skill-pill">Scikit-learn</span><span class="skill-pill">OpenCV</span><span class="skill-pill">Ultralytics (YOLO)</span><span class="skill-pill">Pandas</span><span class="skill-pill">NumPy</span>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-dark rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold text-brand-primary mb-4 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
-                            Languages & Web
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-pill">Python</span><span class="skill-pill">C/C++</span><span class="skill-pill">Java</span><span class="skill-pill">HTML</span><span class="skill-pill">CSS</span><span class="skill-pill">JavaScript</span>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-dark rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold text-brand-primary mb-4 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                            Platforms & Tools
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-pill">IBM Cloud</span><span class="skill-pill">IBM Watsonx</span><span class="skill-pill">Jupyter Notebook</span><span class="skill-pill">VS Code</span><span class="skill-pill">Google Colab</span><span class="skill-pill">Git & GitHub</span>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-dark rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold text-brand-primary mb-4 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>
-                            Industrial & Data
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-pill">Cognex Vision</span><span class="skill-pill">Siemens PLC</span><span class="skill-pill">MongoDB</span><span class="skill-pill">Oracle</span><span class="skill-pill">Matplotlib</span><span class="skill-pill">Seaborn</span><span class="skill-pill">Tkinter</span><span class="skill-pill">PyQt5</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Simple style for the skill pills -->
-            <style>
-                .skill-pill {
-                    display: inline-block;
-                    background-color: #333333; /* Neutral dark gray */
-                    color: #e0e0e0; /* Off-white */
-                    border-radius: 9999px;
-                    padding: 0.25rem 0.75rem;
-                    font-size: 0.875rem; /* 14px */
-                    font-weight: 500;
-                }
-            </style>
-        </section>
-
-        <!-- Education & Certifications -->
-        <section id="education" class="py-24 sm:py-32 bg-gray-dark rounded-xl">
-            <div class="mx-auto max-w-7xl">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                    
-                    <!-- Education -->
-                    <div>
-                        <h2 class="text-3xl font-bold tracking-tight text-gray-light sm:text-4xl mb-12">Education</h2>
-                        <div class="space-y-8">
-                            <!-- College -->
-                            <div class="relative pl-8">
-                                <div class="absolute left-0 top-1 h-full w-px bg-gray-darkest/50"></div>
-                                <div class="absolute left-[-5px] top-1 h-3 w-3 rounded-full bg-brand-primary"></div>
-                                <p class="text-sm text-gray-medium">Oct 2022 - Present</p>
-                                <h3 class="text-lg font-semibold text-gray-light mt-1">Bachelor of Technology - Computer Science & Engineering</h3>
-                                <p class="text-gray-medium">G.H. Raisoni College of Engineering, Nagpur</p>
-                            </div>
-                            <!-- School -->
-                            <div class="relative pl-8">
-                                <div class="absolute left-[-5px] top-1 h-3 w-3 rounded-full bg-brand-primary"></div>
-                                <p class="text-sm text-gray-medium">April 2021 - May 2022</p>
-                                <h3 class="text-lg font-semibold text-gray-light mt-1">12th | CBSE</h3>
-                                <p class="text-gray-medium">Shirinbai Netarwala School, Tumsar</p>
-                                <p class="text-sm text-gray-medium">Percentage: 75.60/100</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Certifications -->
-                    <div>
-                        <h2 class="text-3xl font-bold tracking-tight text-gray-light sm:text-4xl mb-12">Certifications</h2>
-                        <div class="space-y-6">
-                            <!-- Certification 1 -->
-                            <a href="#" class="group block p-4 bg-gray-darkest rounded-lg transition-all duration-300 hover:bg-gray-darkest/50 hover:shadow-lg">
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-lg font-semibold text-gray-light">Google Professional Machine Learning</h3>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-medium transition-transform duration-300 group-hover:translate-x-1 group-hover:text-brand-primary" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                </div>
-                            </a>
-                            <!-- Certification 2 -->
-                            <a href="#" class="group block p-4 bg-gray-darkest rounded-lg transition-all duration-300 hover:bg-gray-darkest/50 hover:shadow-lg">
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-lg font-semibold text-gray-light">Microsoft Machine Learning</h3>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-medium transition-transform duration-300 group-hover:translate-x-1 group-hover:text-brand-primary" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                </div>
-                            </a>
-                            <!-- Certification 3 -->
-                            <a href="#" class="group block p-4 bg-gray-darkest rounded-lg transition-all duration-300 hover:bg-gray-darkest/50 hover:shadow-lg">
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-lg font-semibold text-gray-light">C/C++</h3>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-medium transition-transform duration-300 group-hover:translate-x-1 group-hover:text-brand-primary" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-24 sm:py-32">
-            <div class="mx-auto max-w-3xl text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-light sm:text-4xl">Get in Touch</h2>
-                <p class="mt-6 text-lg leading-8 text-gray-medium">
-                    I'm currently seeking new opportunities and am open to discussing projects or potential roles. Feel free to reach out.
+                <p class="degree">
+                    <a href="#" target="_blank">Google Professional Machine Learning</a>
                 </p>
-                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
-                    <a href="mailto:soumyad.b02@gmail.com" class="rounded-md bg-brand-primary px-3.5 py-2.5 text-sm font-semibold text-gray-darkest shadow-sm hover:bg-brand-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary">
-                        soumyad.b02@gmail.com
-                    </a>
-                    <span class="text-gray-medium hidden sm:block">|</span>
-                    <span class="text-sm font-semibold leading-6 text-gray-light">
-                        +91 8275423568
-                    </span>
-                </div>
+                <p class="degree">
+                    <a href="#" target="_blank">Microsoft Machine Learning</a>
+                </p>
+                <p class="degree">
+                    <a href="#" target="_blank">C/C++</a>
+                </p>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>I'm actively seeking new opportunities in AI and industrial automation. If you'd like to collaborate or discuss a role, please reach out.</p>
+            
+            <div class="contact-links">
+                <a href="mailto:soumyad.b02@gmail.com">soumyad.b02@gmail.com</a>
+                <a href="https://www.linkedin.com/in/soumya-dhuriya-51bb73294" target="_blank">LinkedIn</a>
+                <a href="https://github.com/SoumyaDhuriya24" target="_blank">GitHub</a>
+                <a href="tel:+918275423568">+91 8275423568</a>
+            </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-darkest border-t border-gray-dark/50">
-        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 text-center">
-            <p class="text-sm text-gray-medium">
-                &copy; 2024 Soumya Dhuriya. All rights reserved.
-            </p>
+            </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Soumya Dhuriya. All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mobile menu toggle
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const hamburgerIcon = document.getElementById('hamburger-icon');
-            const closeIcon = document.getElementById('close-icon');
-
-            menuButton.addEventListener('click', () => {
-                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-                menuButton.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.classList.toggle('hidden');
-                hamburgerIcon.classList.toggle('hidden');
-                closeIcon.classList.toggle('hidden');
-            });
-
-            // Close mobile menu on nav link click
-            document.querySelectorAll('#mobile-menu .nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuButton.setAttribute('aria-expanded', 'false');
-                    mobileMenu.classList.add('hidden');
-                    hamburgerIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
-                });
-            });
-
-            // Intersection Observer for active nav links
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${entry.target.id}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, { rootMargin: '-50% 0px -50% 0px' }); // Activates when section is in the middle 50% of viewport
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-
-            // Set home as active by default
-            const homeLink = document.querySelector('a.nav-link[href="#home"]');
-            if (homeLink) {
-                homeLink.classList.add('active');
-            }
-        });
-    </script>
 </body>
 </html>
-
-
